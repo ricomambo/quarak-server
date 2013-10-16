@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  category: MyString
+  provider: MyString
+  comments: MyText
+  amount: 9.99
+  date: 2013-10-16
+  member_id: 
+
+two:
+  title: MyString
+  category: MyString
+  provider: MyString
+  comments: MyText
+  amount: 9.99
+  date: 2013-10-16
+  member_id: 
