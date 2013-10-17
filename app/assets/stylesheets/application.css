@@ -11,3 +11,5 @@
  *= require_self
  *= require_tree .
  */
+
+ .nav, .pagination, .carousel a { cursor: pointer; }

@@ -1,0 +1,54 @@
+<tabset>
+  <tab heading="Expenses" active="tab.active">
+    <div ng-controller="ExpensesCtrl">
+      <div id="expenses">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Amount</th>
+              <th>Category</th>
+              <th>Provider</th>
+              <th>Date</th>
+              <th>Payer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="expense in expenses">
+              <td>{{expense.title}}</td>
+              <td>{{expense.amount}}</td>
+              <td>{{expense.category}}</td>
+              <td>{{expense.provider}}</td>
+              <td>{{expense.date}}</td>
+              <td>{{expense.payer.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </tab>
+  <tab heading="Members">
+    <div ng-controller="MembersCtrl">
+      <div id="members">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Payments</th>
+              <th>Expenses</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="member in members">
+              <td>{{member.name}}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </tab>
+</tabset>
