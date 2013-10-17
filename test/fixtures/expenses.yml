@@ -1,19 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  title: MyString
-  category: MyString
-  provider: MyString
-  comments: MyText
-  amount: 9.99
+alquiler:
+  title: Alquiler
+  category: Alquiler
+  provider: Rosana
+  comments: No comments
+  amount: 2400
   date: 2013-10-16
-  member_id: 
+  payer: mauricio
+  sharers: mauricio, federico, rodrigo
 
-two:
-  title: MyString
-  category: MyString
-  provider: MyString
+supermercado:
+  title: Café
+  category: Supermercado
+  provider: Atomo
   comments: MyText
-  amount: 9.99
+  amount: 29.99
   date: 2013-10-16
-  member_id: 
+  payer: federico 
+  sharers: mauricio, federico, damian

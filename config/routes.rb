@@ -1,7 +1,13 @@
 Quarak::Application.routes.draw do
-  resources :expenses
+  get "payments/index"
+  resources :expenses do
+    resources :members
+  end
 
-  resources :members
+  resources :members do
+    resources :expenses
+    resources :payments
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

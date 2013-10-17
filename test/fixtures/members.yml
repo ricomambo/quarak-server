@@ -1,7 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
+mauricio:
+  name: Mauricio
 
-two:
-  name: MyString
+federico:
+  name: Federico
+
+rodrigo:
+  name: Rodrigo
+
+damian:
+  name: Damián

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131016202434) do
+ActiveRecord::Schema.define(version: 20131017113014) do
 
   create_table "expenses", force: true do |t|
     t.string   "title"
@@ -20,12 +20,12 @@ ActiveRecord::Schema.define(version: 20131016202434) do
     t.text     "comments"
     t.decimal  "amount"
     t.date     "date"
-    t.integer  "member_id"
+    t.integer  "payer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "expenses", ["member_id"], name: "index_expenses_on_member_id"
+  add_index "expenses", ["payer_id"], name: "index_expenses_on_payer_id"
 
   create_table "expenses_members", id: false, force: true do |t|
     t.integer "expense_id", null: false
