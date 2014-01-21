@@ -1,13 +1,14 @@
 Quarak::Application.routes.draw do
   
-  resources :expenses do
-    resources :members
-  end
+  scope :api do 
+    resources :expenses do
+      resources :members
+    end
 
-  resources :members do
-    resources :expenses
-    resources :payments
+    resources :members do
+      resources :expenses
+      resources :payments
+    end
   end
-
-  root 'home#index'
+  
 end

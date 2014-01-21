@@ -1,1 +1,0 @@
-window.App = angular.module('Quarak', ['ui.bootstrap','ngResource'])
