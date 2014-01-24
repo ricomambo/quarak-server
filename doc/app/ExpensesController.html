@@ -159,12 +159,17 @@
 
         <div class="method-description">
           
-          
+          <p>Without params, returns a json including all expenses.</p>
+
+<p>When member_id is sent as parameter, it returns all expenses from that
+member.</p>
+
+<p>Each expense also includes the Payer data.</p>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/expenses_controller.rb, line 2</span>
+            <pre><span class="ruby-comment"># File app/controllers/expenses_controller.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:member_id</span>]
     <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-constant">Member</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:member_id</span>]).<span class="ruby-identifier">expenses</span>
@@ -193,12 +198,13 @@
 
         <div class="method-description">
           
-          
+          <p>Returns a json with all data from the given expense, including the Payer
+data.</p>
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/expenses_controller.rb, line 10</span>
+            <pre><span class="ruby-comment"># File app/controllers/expenses_controller.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-constant">Expense</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">to_json</span>(<span class="ruby-identifier">include</span><span class="ruby-operator">:</span> <span class="ruby-value">:payer</span>)
 <span class="ruby-keyword">end</span></pre>
