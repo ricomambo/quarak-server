@@ -1,11 +1,12 @@
-class Expense < ActiveRecord::Base
-  belongs_to :payer, :class_name => 'Member', :foreign_key => 'payer_id'
-  has_and_belongs_to_many :members
+class Expense
+  include Mongoid::Document
+  field :date, type: Date
+  field :category, type: String
+  field :provider, type: String
+  field :amount, type: Float
+  field :payer, type: String
+  field :members, type: Array
+  field :comments, type: String
 
-  def serializable_hash(options={})
-    options = { 
-      include: :payer
-    }.update(options)
-    super(options)
-  end
+  index members: 1
 end

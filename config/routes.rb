@@ -1,14 +1,5 @@
-Quarak::Application.routes.draw do
-  
-  scope :api do 
-    resources :expenses do
-      resources :members
-    end
-
-    resources :members do
-      resources :expenses
-      resources :payments
-    end
+Rails.application.routes.draw do
+  namespace :api, :defaults => {:format => :json} do
+    resources :expenses
   end
-  
 end
