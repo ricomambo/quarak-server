@@ -19,7 +19,7 @@ class Api::ExpensesController < ApplicationController
     @expense = Expense.new(expense_params)
 
     if @expense.save
-      render :show, status: :created, location: @expense
+      render :show, status: :created, location: api_expense_url(@expense)
     else
       render json: @expense.errors, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class Api::ExpensesController < ApplicationController
 
   def update
     if @expense.update(expense_params)
-      render :show, status: :ok, location: @expense
+      render :show, status: :ok, location: api_expense_url(@expense)
     else
       render json: @expense.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class Api::ExpensesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def expense_params
-      params[:expense]
+      params.require(:expense).permit(:date, :category, :provider, :amount, :payer, :members, :comments)
     end
 end

@@ -1,4 +1,4 @@
 json.array!(@expenses) do |expense|
-  json.extract! expense, :id
-  json.url expense_url(expense, format: :json)
+  json.extract! expense, :id, :date, :category, :provider, :amount, :payer, :members, :comments
+  json.url api_expense_url(expense, format: :json)
 end
