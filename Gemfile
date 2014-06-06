@@ -42,3 +42,8 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'rspec-rails'
 end
+
+gem 'devise'
+gem 'attr_encrypted'
+gem 'active_model_serializers'
+# gem 'simple_token_authentication'
