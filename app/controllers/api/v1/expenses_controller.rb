@@ -48,7 +48,7 @@ module Api
 
         # Never trust parameters from the scary internet, only allow the white list through.
         def expense_params
-          params.require(:expense).permit(:date, :category, :provider, :amount, :payer, :members, :comments)
+          params.require(:expense).permit(:project, :date, :category, :provider, :amount, :payer, :members, :comments)
         end
     end
   end

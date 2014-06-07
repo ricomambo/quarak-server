@@ -11,17 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522151850) do
+ActiveRecord::Schema.define(version: 20140607011402) do
 
   create_table "expenses", force: true do |t|
+    t.integer  "project_id"
     t.date     "date"
     t.string   "category"
     t.string   "provider"
     t.float    "amount"
-    t.integer  "payer"
+    t.integer  "user_id"
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "expenses_users", id: false, force: true do |t|
+    t.integer "user_id",    null: false
+    t.integer "expense_id", null: false
+  end
+
+  add_index "expenses_users", ["expense_id", "user_id"], name: "index_expenses_users_on_expense_id_and_user_id"
+  add_index "expenses_users", ["user_id", "expense_id"], name: "index_expenses_users_on_user_id_and_expense_id"
+
+  create_table "projects", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "projects_users", id: false, force: true do |t|
+    t.integer "user_id",    null: false
+    t.integer "project_id", null: false
   end
 
   create_table "users", force: true do |t|
@@ -38,6 +58,7 @@ ActiveRecord::Schema.define(version: 20140522151850) do
     t.string   "encrypted_authentication_token"
     t.string   "encrypted_authentication_token_salt"
     t.string   "encrypted_authentication_token_iv"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
