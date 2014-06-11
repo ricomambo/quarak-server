@@ -12,17 +12,17 @@ module Api
       end
 
       def new
-        @expense = Expense.new
+        @expense = @project.expenses.new
       end
 
       def edit
       end
 
       def create
-        @expense = Expense.new(expense_params)
+        @expense = @project.expenses.new(expense_params)
 
         if @expense.save
-          render :show, status: :created, location: api_expense_url(@expense)
+          render :show, status: :created, location: api_project_expense_url(@project, @expense)
         else
           render json: @expense.errors, status: :unprocessable_entity
         end
@@ -30,7 +30,7 @@ module Api
 
       def update
         if @expense.update(expense_params)
-          render :show, status: :ok, location: api_expense_url(@expense)
+          render :show, status: :ok, location: api_project_expense_url(@project, @expense)
         else
           render json: @expense.errors, status: :unprocessable_entity
         end
@@ -44,7 +44,7 @@ module Api
       private
         # Use callbacks to share common setup or constraints between actions.
         def set_expense
-          @expense = Expense.find(params[:id])
+          @expense = @project.expenses.find(params[:id])
         end
 
         def set_project
@@ -54,7 +54,7 @@ module Api
 
         # Never trust parameters from the scary internet, only allow the white list through.
         def expense_params
-          params.require(:expense).permit(:project, :date, :category, :provider, :amount, :payer, :members, :comments)
+          params.require(:expense).permit(:date, :category, :provider, :amount, :payer_id, :comments, :member_ids => [])
         end
     end
   end

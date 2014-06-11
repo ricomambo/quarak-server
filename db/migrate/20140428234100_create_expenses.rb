@@ -6,7 +6,7 @@ class CreateExpenses < ActiveRecord::Migration
       t.string :category
       t.string :provider
       t.float :amount
-      t.integer :user_id
+      t.integer :payer_id
       t.text :comments
 
       t.timestamps

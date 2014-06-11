@@ -49,7 +49,7 @@ module Api
 
         # Never trust parameters from the scary internet, only allow the white list through.
         def project_params
-          params.require(:project).permit(:title)
+          params.require(:project).permit(:title, :member_ids => [])
         end
     end
   end

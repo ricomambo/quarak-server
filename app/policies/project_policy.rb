@@ -8,4 +8,8 @@ class ProjectPolicy < Struct.new(:user, :project)
   def show?
     project.members.include? user
   end
+
+  def update?
+    project.members.include? user
+  end
 end

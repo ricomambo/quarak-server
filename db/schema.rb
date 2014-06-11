@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20140607011402) do
     t.string   "category"
     t.string   "provider"
     t.float    "amount"
-    t.integer  "user_id"
+    t.integer  "payer_id"
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"

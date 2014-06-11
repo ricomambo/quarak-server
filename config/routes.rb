@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
       resources :projects do
         resources :expenses
-        resources :members, controller: :users
       end
       resources :users, only: [:index]
     end
