@@ -46,3 +46,4 @@ end
 gem 'devise'
 gem 'attr_encrypted'
 gem 'active_model_serializers'
+gem 'pundit'

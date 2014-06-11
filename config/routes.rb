@@ -10,10 +10,14 @@ Rails.application.routes.draw do
 
   namespace :api, :defaults => {:format => :json} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
-      resources :expenses
-      resources :projects
+      resources :projects do
+        resources :expenses
+        resources :members, controller: :users
+      end
       resources :users, only: [:index]
     end
   end
 
+  # Any other routes are handled here (as ActionDispatch prevents RoutingError from hitting ApplicationController::rescue_action).
+  match "*path", :to => "application#routing_error", :via => :all
 end

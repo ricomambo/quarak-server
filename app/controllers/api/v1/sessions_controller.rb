@@ -5,10 +5,8 @@ module Api
 
       def create
         self.resource = warden.authenticate!(:scope => resource_name)
-
         sign_in(resource_name, resource)
-
-        render :json => resource, :status => 200
+        render :json => resource, :status => :ok
       end
 
       def destroy

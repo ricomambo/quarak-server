@@ -4,7 +4,7 @@ module Api
       before_action :set_project, only: [:show, :edit, :update, :destroy]
 
       def index
-        @projects = @current_user.projects
+        @projects = policy_scope(Project)
       end
 
       def show
@@ -44,6 +44,7 @@ module Api
         # Use callbacks to share common setup or constraints between actions.
         def set_project
           @project = Project.find(params[:id])
+          authorize @project
         end
 
         # Never trust parameters from the scary internet, only allow the white list through.

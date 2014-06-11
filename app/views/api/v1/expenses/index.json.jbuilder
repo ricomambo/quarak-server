@@ -1,9 +1,5 @@
 json.array!(@expenses) do |expense|
-  json.extract! expense, :id, :date, :category, :provider, :amount, :comments
-  json.project do
-    json.id expense.project.id
-    json.title expense.project.title
-  end
+  json.extract! expense, :id, :project_id, :date, :category, :provider, :amount, :comments
   json.payer do
     json.id expense.payer.id
     json.name expense.payer.name

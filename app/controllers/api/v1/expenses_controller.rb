@@ -1,10 +1,11 @@
 module Api
   module V1
     class ExpensesController < ApplicationController
+      before_action :set_project
       before_action :set_expense, only: [:show, :edit, :update, :destroy]
 
       def index
-        @expenses = Expense.all
+        @expenses = @project.expenses
       end
 
       def show
@@ -44,6 +45,11 @@ module Api
         # Use callbacks to share common setup or constraints between actions.
         def set_expense
           @expense = Expense.find(params[:id])
+        end
+
+        def set_project
+          @project = Project.find(params[:project_id])
+          authorize @project, :show?
         end
 
         # Never trust parameters from the scary internet, only allow the white list through.

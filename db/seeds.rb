@@ -26,8 +26,12 @@ users = User.create([
 
 projects = Project.create([
   {
-    title: "Test Project",
+    title: "First Project",
     members: [users[0], users[1], users[2]]
+  },
+  {
+    title: "Last Project",
+    members: [users[1], users[2]]
   }
 ])
 
@@ -61,5 +65,35 @@ expenses = Expense.create([
     payer: users[2],
     comments: "The last expense",
     members: [users[0], users[2]]
+  },
+  {
+    project: projects.last,
+    date: "2014-05-25",
+    category: "Supermarket",
+    provider: "Carrefour",
+    amount: 1745.24,
+    payer: users[1],
+    comments: "Sample expense",
+    members: [users[1], users[2]]
+  },
+  {
+    project: projects.last,
+    date: "2014-05-26",
+    category: "Misc",
+    provider: "Mystic Man",
+    amount: 400,
+    payer: users[2],
+    comments: "Another expense",
+    members: [users[1], users[2]]
+  },
+  {
+    project: projects.last,
+    date: "2014-05-27",
+    category: "Supermarket",
+    provider: "Carrefour",
+    amount: 25.41,
+    payer: users[2],
+    comments: "The last expense",
+    members: [users[1], users[2]]
   }
 ])
