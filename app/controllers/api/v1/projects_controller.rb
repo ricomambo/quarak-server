@@ -1,20 +1,13 @@
 module Api
   module V1
     class ProjectsController < ApplicationController
-      before_action :set_project, only: [:show, :edit, :update, :destroy]
+      before_action :set_project, only: [:show, :update, :destroy]
 
       def index
         @projects = policy_scope(Project)
       end
 
       def show
-      end
-
-      def new
-        @project = Project.new
-      end
-
-      def edit
       end
 
       def create

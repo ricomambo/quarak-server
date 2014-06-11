@@ -7,11 +7,11 @@ module Api
       def create
         user = User.new(sign_up_params)
         if user.save
-          render :json=> user, :status=>201
+          render :json => user, :status => :created
           return
         else
           warden.custom_failure!
-          render :json=> user.errors, :status=>422
+          render :json => user.errors, :status => :unprocessable_entity
         end
       end
     end

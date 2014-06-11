@@ -2,20 +2,13 @@ module Api
   module V1
     class ExpensesController < ApplicationController
       before_action :set_project
-      before_action :set_expense, only: [:show, :edit, :update, :destroy]
+      before_action :set_expense, only: [:show, :update, :destroy]
 
       def index
         @expenses = @project.expenses
       end
 
       def show
-      end
-
-      def new
-        @expense = @project.expenses.new
-      end
-
-      def edit
       end
 
       def create

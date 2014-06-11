@@ -4,14 +4,18 @@ Rails.application.routes.draw do
 
   scope :api do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
-      devise_for :users, :controllers => {:registrations => "api/v1/registrations", :sessions => "api/v1/sessions"}
+      devise_for :users, :controllers => {
+        :registrations => "api/v1/registrations",
+        :sessions => "api/v1/sessions",
+        :passwords => "api/v1/passwords"
+      }
     end
   end
 
   namespace :api, :defaults => {:format => :json} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
-      resources :projects do
-        resources :expenses
+      resources :projects, except: [:new, :edit] do
+        resources :expenses, except: [:new, :edit]
       end
       resources :users, only: [:index]
     end

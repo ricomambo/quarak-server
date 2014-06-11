@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit
+  respond_to :json
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -7,9 +8,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :restrict_access_by_token
   before_action :configure_permitted_parameters, if: :devise_controller?
-
-  #after_action :verify_authorized, :except => :index
-  #after_action :verify_policy_scoped, :only => :index
 
   def routing_error
     raise ActionController::RoutingError.new("No route matches #{params[:path]}")
