@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
     end
 
     def handle_errors(exception)
-      render :json => { :errors => { :error => exception.message} }.to_json, :status => :internal_server_error
+      render :json => { :errors => { :error => exception.message, :baktrace => exception.backtrace } }.to_json, :status => :internal_server_error
     end
 
 end
