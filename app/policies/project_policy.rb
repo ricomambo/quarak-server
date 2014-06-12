@@ -12,4 +12,9 @@ class ProjectPolicy < Struct.new(:user, :project)
   def update?
     project.members.include? user
   end
+
+  def destroy?
+    project.members.include? user
+  end
+
 end
