@@ -1,0 +1,3 @@
+#/bin/bash
+
+pandoc -s README.md -c style.css -o public/index.html

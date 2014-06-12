@@ -1,4 +1,4 @@
-== QUARAK
+# QUARAK
 
 Quarak is a pretty simple shared expenses manager. It's very useful to manage expenses in shared offices or trips.
 
