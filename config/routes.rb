@@ -18,6 +18,7 @@ Rails.application.routes.draw do
         resources :expenses, except: [:new, :edit]
       end
       resources :users, only: [:index]
+      get 'profile', to: 'users#show'
     end
   end
 
