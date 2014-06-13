@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_encrypted :authentication_token, :key => "paE^2&Bx#3xK"
+  attr_encrypted :authentication_token, :key => ENV['TOKEN_KEY']
   before_save :ensure_authentication_token
 
   def ensure_authentication_token
