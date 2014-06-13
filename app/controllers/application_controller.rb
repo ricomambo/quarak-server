@@ -35,10 +35,6 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(user:[:email, :password]) }
-    end
-
     def handle_errors(exception)
       render :json => { :errors => { :error => exception.message, :baktrace => exception.backtrace } }.to_json, :status => :internal_server_error
     end
