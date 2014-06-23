@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def request_http_token_authentication(realm = "Application")
-    self.__send__ :render, :json => { :error => "HTTP Token: Access denied. You did not provide a valid token." }.to_json, :status => :unauthorized
+    self.__send__ :render, json: { error: "HTTP Token: Access denied. You did not provide a valid token." }.to_json, status: :unauthorized
   end
 
   private
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
     end
 
     def handle_errors(exception)
-      render :json => { :errors => { :error => exception.message, :baktrace => exception.backtrace } }.to_json, :status => :internal_server_error
+      render json: { errors: { error: exception.message, baktrace: exception.backtrace } }.to_json, status: :internal_server_error
     end
 
 end

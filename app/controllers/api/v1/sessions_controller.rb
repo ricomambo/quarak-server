@@ -14,6 +14,13 @@ module Api
         @current_user.reset_authentication_token!
         super
       end
+
+      protected
+
+        def invalid_login_attempt
+          warden.custom_failure!
+          render json: { success: false, message: 'Error with your login or password' }, status: :anauthorized
+        end
     end
   end
 end
