@@ -13,7 +13,7 @@ module Api
         @user = User.new(user_params)
 
         if @user.save
-          render :show, status: :created, location: api_user_url(@user)
+          render json: @user.as_json(only: [:id, :email, :name])
         else
           render json: @user.errors, status: :unprocessable_entity
         end
@@ -21,7 +21,7 @@ module Api
 
       def update
         if @current_user.update(user_params)
-          render :show, status: :ok, location: api_user_url(@user)
+          render json: @current_user.as_json(only: [:id, :email, :name])
         else
           render json: @user.errors, status: :unprocessable_entity
         end
@@ -30,7 +30,7 @@ module Api
       private
         # Never trust parameters from the scary internet, only allow the white list through.
         def user_params
-          params.require(:project).permit(:email, :password, :name)
+          params.require(:user).permit(:email, :password, :name)
         end
     end
   end
