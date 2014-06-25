@@ -29,7 +29,5 @@ module QuarakServer
 
     config.generators.assets = false
     config.generators.helper = false
-
-    config.autoload_paths += %W(#{config.root}/lib)
   end
 end

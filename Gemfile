@@ -43,9 +43,7 @@ group :test do
   gem 'rspec-rails'
 end
 
-gem 'devise'
-gem 'attr_encrypted'
-gem 'active_model_serializers'
+gem 'bcrypt'
 gem 'pundit'
 
 gem 'redcarpet'

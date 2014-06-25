@@ -1,26 +1,19 @@
 module Api
   module V1
-    class SessionsController < Devise::SessionsController
-      skip_before_filter :restrict_access_by_token, :only => [:new, :create]
-      respond_to :json
+    class SessionsController < ApplicationController
+      skip_before_filter :authenticate_token!, only: [:create]
 
       def create
-        self.resource = warden.authenticate!(:scope => resource_name)
-        sign_in(resource_name, resource)
-        render :json => resource, :status => :ok
+        if params[:user]
+          @current_user = User.authenticate(params[:user][:email], params[:user][:password])
+          render json: @current_user.as_json(only: [:id, :name, :token])
+        end
       end
 
       def destroy
-        @current_user.reset_authentication_token!
-        super
+        @current_user.reset_token!
+        head :ok
       end
-
-      protected
-
-        def invalid_login_attempt
-          warden.custom_failure!
-          render json: { success: false, message: 'Error with your login or password' }, status: :anauthorized
-        end
     end
   end
 end

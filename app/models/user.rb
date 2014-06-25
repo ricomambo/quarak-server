@@ -3,31 +3,45 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :projects, inverse_of: :members
   has_many :payments, class_name: "Expense", foreign_key: "user_id", inverse_of: :payer
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  validates_presence_of :email, :password
+  validates_uniqueness_of :email
 
-  attr_encrypted :authentication_token, :key => ENV['TOKEN_KEY']
-  before_save :ensure_authentication_token
+  before_save :ensure_token
 
-  def ensure_authentication_token
-    if authentication_token.blank?
-      self.authentication_token = generate_authentication_token
+  def self.authenticate(email, password)
+    user = find_by_email(email)
+    logger.debug password
+    logger.debug user.password
+    logger.debug BCrypt::Password.new(user.password)
+    if user && BCrypt::Password.new(user.password) == password
+      user.reset_token!
+      user
+    else
+      nil
     end
   end
 
-  def reset_authentication_token!
-    self.authentication_token = generate_authentication_token
+  def password=(secret)
+    write_attribute(:password, BCrypt::Password.create(secret))
+  end
+
+  def ensure_token
+    if token.blank?
+      self.token = generate_token
+    end
+  end
+
+  def reset_token!
+    self.token = generate_token
     self.save
   end
 
   private
 
-  def generate_authentication_token
+  def generate_token
     loop do
-      token = Devise.friendly_token
-      break token unless User.find_by_authentication_token(token)
+      token = SecureRandom.urlsafe_base64(nil, false)
+      break token unless User.find_by_token(token)
     end
   end
 end
