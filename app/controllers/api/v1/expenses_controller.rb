@@ -1,6 +1,7 @@
 module Api
   module V1
     class ExpensesController < ApplicationController
+      wrap_parameters include: [:date, :category, :provider, :amount, :payer_id, :comments, :member_ids]
       before_action :set_project
       before_action :set_expense, only: [:show, :update, :destroy]
 

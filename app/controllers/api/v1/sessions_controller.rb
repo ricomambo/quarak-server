@@ -16,7 +16,7 @@ module Api
 
       def destroy
         @current_user.reset_token!
-        head :ok
+        head :none_content
       end
     end
   end
