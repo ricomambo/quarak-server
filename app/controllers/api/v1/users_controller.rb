@@ -1,6 +1,8 @@
 module Api
   module V1
     class UsersController < ApplicationController
+      skip_before_filter :authenticate_token!, only: [:create]
+
       def index
         @users = User.all
       end
@@ -12,18 +14,14 @@ module Api
       def create
         @user = User.new(user_params)
 
-        if @user.save
-          render json: @user.as_json(only: [:id, :email, :name])
-        else
+        unless @user.save
           render json: @user.errors, status: :unprocessable_entity
         end
       end
 
       def update
-        if @current_user.update(user_params)
-          render json: @current_user.as_json(only: [:id, :email, :name])
-        else
-          render json: @user.errors, status: :unprocessable_entity
+        unless @current_user.update(user_params)
+          render json: @current_user.errors, status: :unprocessable_entity
         end
       end
 

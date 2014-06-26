@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  skip_before_filter :restrict_access_by_token
+  skip_before_filter :authenticate_token!
 
   def index
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new)

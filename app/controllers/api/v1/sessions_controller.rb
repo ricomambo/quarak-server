@@ -1,12 +1,16 @@
 module Api
   module V1
     class SessionsController < ApplicationController
+      wrap_parameters :user
+
       skip_before_filter :authenticate_token!, only: [:create]
 
       def create
-        if params[:user]
-          @current_user = User.authenticate(params[:user][:email], params[:user][:password])
-          render json: @current_user.as_json(only: [:id, :name, :token])
+        if params[:email] && params[:password]
+          @current_user = User.authenticate(params[:email], params[:password])
+          head :unauthorized unless @current_user
+        else
+          head :bad_request
         end
       end
 

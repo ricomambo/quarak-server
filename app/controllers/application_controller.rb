@@ -14,6 +14,14 @@ class ApplicationController < ActionController::Base
 
   protected
 
+    def current_user=(user)
+      @current_user = user
+    end
+
+    def current_user
+      @current_user
+    end
+
     def authenticate_token!
       authenticate_or_request_with_http_token do |token, options|
         @current_user = User.find_by_token(token)
