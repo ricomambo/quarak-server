@@ -3,6 +3,6 @@ class HomeController < ApplicationController
 
   def index
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new)
-    @readme = markdown.render(IO.read(Rails.root.join 'Readme.md')).html_safe
+    @readme = markdown.render(IO.read(Rails.root.join 'README.md')).html_safe
   end
 end
