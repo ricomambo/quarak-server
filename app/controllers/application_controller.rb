@@ -1,9 +1,5 @@
 class ApplicationController < ActionController::Base
   include Pundit
-  respond_to :json
-
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
 
   before_filter :authenticate_token!
@@ -11,6 +7,9 @@ class ApplicationController < ActionController::Base
   def routing_error
     raise ActionController::RoutingError.new("No route matches #{params[:path]}")
   end
+
+  rescue_from Exception, with: :handle_errors
+  rescue_from Pundit::NotAuthorizedError, with: :permission_errors
 
   protected
 
@@ -31,8 +30,13 @@ class ApplicationController < ActionController::Base
 
   private
 
+    def permission_errors(exception)
+      render json: { error: exception.message }.to_json, status: :unauthorized
+    end
+
     def handle_errors(exception)
-      render json: { errors: { error: exception.message, baktrace: exception.backtrace } }.to_json, status: :internal_server_error
+      #render json: { error: exception.message, baktrace: exception.backtrace }.to_json, status: :internal_server_error
+      render json: { error: exception.message }.to_json, status: :internal_server_error
     end
 
 end
