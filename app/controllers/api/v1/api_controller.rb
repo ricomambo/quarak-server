@@ -1,6 +1,4 @@
 class ApiController < ApplicationController
-  protect_from_forgery with: :null_session
-  respond_to :json
   include Pundit
 
   before_filter :authenticate_token!
