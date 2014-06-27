@@ -1,6 +1,6 @@
 module Api
   module V1
-    class ProjectsController < ApplicationController
+    class ProjectsController < ApiController
       wrap_parameters include: [:title, :member_ids]
       before_action :set_project, only: [:show, :update, :destroy]
 

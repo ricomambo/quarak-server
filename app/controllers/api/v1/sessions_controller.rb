@@ -1,6 +1,6 @@
 module Api
   module V1
-    class SessionsController < ApplicationController
+    class SessionsController < ApiController
       wrap_parameters :user
 
       skip_before_filter :authenticate_token!, only: [:create]

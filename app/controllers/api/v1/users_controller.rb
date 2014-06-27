@@ -1,14 +1,14 @@
 module Api
   module V1
-    class UsersController < ApplicationController
+    class UsersController < ApiController
       skip_before_filter :authenticate_token!, only: [:create]
+      respond_to :json
 
       def index
         @users = User.all
       end
 
       def show
-        @user = @current_user
       end
 
       def create
@@ -26,7 +26,6 @@ module Api
       end
 
       private
-        # Never trust parameters from the scary internet, only allow the white list through.
         def user_params
           params.require(:user).permit(:email, :password, :name)
         end

@@ -5,4 +5,8 @@ class Expense < ActiveRecord::Base
 
   validates :project, :date, :category, :amount, :payer, :members, presence: true
 
+  def to_s
+    "Expense ##{self.id}"
+  end
+
 end
