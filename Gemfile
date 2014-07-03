@@ -40,7 +40,18 @@ gem 'sqlite3'
 
 group :test do
   gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+end
+
+group :development, :test do
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'faker'
+end
+
+group :development do
+  gem 'guard'
+  gem 'guard-rspec'
 end
 
 gem 'bcrypt'
