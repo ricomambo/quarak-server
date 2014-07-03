@@ -8,7 +8,10 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new("No route matches #{params[:path]}")
   end
 
-  rescue_from Exception, with: :handle_errors
+  if Rails.env.development?
+    rescue_from Exception, with: :handle_errors
+  end
+
   rescue_from Pundit::NotAuthorizedError, with: :permission_errors
 
   protected
