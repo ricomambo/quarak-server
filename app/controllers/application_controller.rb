@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pundit
   protect_from_forgery with: :null_session
+  respond_to :json
 
   before_filter :authenticate_token!
 
