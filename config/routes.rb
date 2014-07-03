@@ -2,18 +2,22 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
 
-  namespace :api, :defaults => {:format => :json} do
+  namespace :api, defaults: { format: 'json' } do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
+
       resources :projects, except: [:new, :edit] do
         resources :expenses, except: [:new, :edit]
       end
+
+      resources :users, only: [:index]
+
       post 'sign_up', to: 'users#create'
       post 'sign_in', to: 'sessions#create'
       delete 'sign_out', to: 'sessions#destroy'
       get 'profile', to: 'users#show'
       put 'profile', to: 'users#update'
       patch 'profile', to: 'users#update'
-      resources :users, only: [:index]
+
     end
   end
 
