@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -36,7 +37,7 @@ gem 'spring', group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'sqlite3'
+
 
 group :test do
   gem 'cucumber-rails', :require => false
@@ -44,6 +45,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'faker'
@@ -52,6 +54,10 @@ end
 group :development do
   gem 'guard'
   gem 'guard-rspec'
+end
+
+group :production do
+  gem 'pg'
 end
 
 gem 'bcrypt'
