@@ -1,4 +1,6 @@
-# QUARAK SERVER
+[![Build Status](https://travis-ci.org/ricomambo/quarak-server.svg?branch=master)](https://travis-ci.org/ricomambo/quarak-server)
+
+# QUARAK SERVER 
 
 Quarak is a pretty simple shared expenses manager. It's very useful to manage expenses in shared offices or trips.
 
