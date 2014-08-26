@@ -2,7 +2,7 @@ module Api
   module V1
     class ProjectsController < ApiController
       wrap_parameters include: [:title, :member_ids]
-      before_action :set_project, only: [:show, :update, :destroy]
+      before_action :set_project, only: [:show, :update, :destroy, :balance]
 
       def index
         @projects = policy_scope(Project)
@@ -34,10 +34,15 @@ module Api
         head :no_content
       end
 
+      def balance
+        #@users = [{id: 1, name: "Luis", balance: "1000"}, {id: 2, name: "Jorge", balance: "-500"}]
+        @users = @project.balance
+      end
+
       private
         # Use callbacks to share common setup or constraints between actions.
         def set_project
-          @project = Project.find(params[:id])
+          @project = Project.find(params[:id] || params[:project_id])
           authorize @project
         end
 

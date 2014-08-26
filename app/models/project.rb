@@ -7,4 +7,16 @@ class Project < ActiveRecord::Base
   def to_s
     "Project ##{self.id}"
   end
+
+  def balance
+    self.members.each do |member|
+      member.expenses_amount = 0
+      self.expenses.joins(:members).where("users.id = ?", member.id).each do |expense|
+        member.expenses_amount += expense.amount / expense.members.count
+      end
+      member.payments_amount = self.expenses.where("payer_id = ?", member.id).sum(:amount)
+      member.balance = member.payments_amount - member.expenses_amount
+    end
+    self.members
+  end
 end
