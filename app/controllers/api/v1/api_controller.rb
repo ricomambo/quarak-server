@@ -47,8 +47,8 @@ module Api
         end
 
         def render_error(exception)
-          render json: { error: exception.message, baktrace: exception.backtrace }.to_json, status: :internal_server_error
-          #render json: { error: exception.message }.to_json, status: :internal_server_error
+          #render json: { error: exception.message, baktrace: exception.backtrace }.to_json, status: :internal_server_error
+          render json: { error: exception.message }.to_json, status: :internal_server_error
         end
 
     end

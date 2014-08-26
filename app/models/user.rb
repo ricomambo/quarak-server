@@ -3,8 +3,6 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :projects, inverse_of: :members
   has_many :payments, class_name: "Expense", foreign_key: "user_id", inverse_of: :payer
 
-  attr_accessor :expenses_amount, :payments_amount, :balance
-
   validates_presence_of :email, :password
   validates_uniqueness_of :email
 

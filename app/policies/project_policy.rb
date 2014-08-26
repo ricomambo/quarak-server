@@ -17,8 +17,4 @@ class ProjectPolicy < Struct.new(:user, :project)
     project.members.include? user
   end
 
-  def balance?
-    project.members.include? user
-  end
-
 end
