@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
 
       resources :projects, except: [:new, :edit] do
+        get 'balance', to: 'projects#balance'
         resources :expenses, except: [:new, :edit]
       end
 
