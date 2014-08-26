@@ -4,6 +4,7 @@ module Api
       include Pundit
 
       before_filter :authenticate_token!
+      skip_before_filter :verify_authenticity_token
 
       def routing_error
         raise ActionController::RoutingError.new("No route matches #{params[:path]}")
