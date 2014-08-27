@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140607011402) do
+ActiveRecord::Schema.define(version: 20140827012718) do
 
   create_table "expenses", force: true do |t|
     t.integer  "project_id"
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 20140607011402) do
 
   add_index "projects_users", ["project_id", "user_id"], name: "index_projects_users_on_project_id_and_user_id"
   add_index "projects_users", ["user_id", "project_id"], name: "index_projects_users_on_user_id_and_project_id"
+
+  create_table "settlements", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "payer_id"
+    t.integer  "payee_id"
+    t.decimal  "amount",     precision: 8, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",      default: "", null: false

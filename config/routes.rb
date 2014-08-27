@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
       resources :projects, except: [:new, :edit] do
         resources :expenses, except: [:new, :edit]
+        resources :settlements, only: [:index]
       end
 
       resources :users, only: [:index]
