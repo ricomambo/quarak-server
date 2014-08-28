@@ -1,6 +1,6 @@
 module RequestsHelper
   def json
-    @json ||= JSON.parse(response.body).deep_symbolize_keys!
+    @json ||= JSON.parse(response.body)
   end
 
   def user_auth_header(user)
