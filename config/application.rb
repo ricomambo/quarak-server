@@ -31,5 +31,12 @@ module QuarakServer
 
     config.generators.assets = false
     config.generators.helper = false
+
+    config.middleware.use Rack::Cors, :debug => true, :logger => Rails.logger  do
+      allow do
+        origins Settings[:cors][:allowed_origins].split(',')
+        resource '*', headers: :any, :methods => [:get, :post, :put, :delete, :options]
+      end
+    end
   end
 end
