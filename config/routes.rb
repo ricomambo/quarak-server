@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get 'profile', to: 'users#show'
       put 'profile', to: 'users#update'
       patch 'profile', to: 'users#update'
+      get 'balance', to: 'users#balance'
 
     end
   end
