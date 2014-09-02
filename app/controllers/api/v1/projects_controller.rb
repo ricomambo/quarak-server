@@ -35,7 +35,7 @@ module Api
       end
 
       def balance
-        @balances = @project.balances
+        @users = @project.balance
       end
 
       private
