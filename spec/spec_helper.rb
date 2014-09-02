@@ -22,6 +22,7 @@ RSpec.configure do |config|
   # Macros and helpers
   config.include FactoryGirl::Syntax::Methods
   config.include ControllerHelper, type: :controller
+  config.include RequestsHelper, type: :request
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of

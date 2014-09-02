@@ -1,5 +1,3 @@
-require 'api_constraints'
-
 Rails.application.routes.draw do
 
   namespace :api, defaults: { format: 'json' } do
@@ -8,6 +6,7 @@ Rails.application.routes.draw do
       resources :projects, except: [:new, :edit] do
         get 'balance', to: 'projects#balance'
         resources :expenses, except: [:new, :edit]
+        resources :settlements, only: [:index, :create]
       end
 
       resources :users, only: [:index]
