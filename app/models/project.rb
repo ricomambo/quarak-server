@@ -9,15 +9,11 @@ class Project < ActiveRecord::Base
     "Project ##{self.id}"
   end
 
-  def balance
+  def balances
+    balances = []
     self.members.each do |member|
-      member.expenses_amount = 0
-      self.expenses.joins(:members).where("users.id = ?", member.id).each do |expense|
-        member.expenses_amount += expense.amount / expense.members.count
-      end
-      member.payments_amount = self.expenses.where("payer_id = ?", member.id).sum(:amount)
-      member.balance = member.payments_amount - member.expenses_amount
+      balances << Balance.new(self, member)
     end
-    self.members
+    balances
   end
 end

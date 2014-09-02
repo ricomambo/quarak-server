@@ -25,6 +25,10 @@ module Api
         end
       end
 
+      def balance
+        @balances = @current_user.balances
+      end
+
       private
         def user_params
           params.require(:user).permit(:email, :password, :name)

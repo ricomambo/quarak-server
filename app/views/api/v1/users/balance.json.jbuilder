@@ -1,7 +1,7 @@
 json.array!(@balances) do |balance|
-  json.user do
-    json.id balance.user.id
-    json.name balance.user.name
+  json.project do
+    json.id balance.project.id
+    json.name balance.project.title
   end
   json.extract! balance, :expenses, :payments, :credits, :debits, :balance
 end
