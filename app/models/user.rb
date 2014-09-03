@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id         :integer          not null, primary key
+#  email      :string(255)      default(""), not null
+#  password   :string(255)      default(""), not null
+#  name       :string(255)
+#  token      :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class User < ActiveRecord::Base
   has_and_belongs_to_many :expenses, inverse_of: :members
   has_and_belongs_to_many :projects, inverse_of: :members

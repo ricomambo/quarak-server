@@ -25,6 +25,7 @@ gem 'spring', group: :development
 
 gem 'rack-cors', :require => 'rack/cors'
 gem 'tender_hash', '~> 0.0.2'
+gem 'annotate'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
