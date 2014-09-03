@@ -32,6 +32,6 @@ class Balance
   end
 
   def balance
-    @payments - @expenses + @paid_settlements - @received_settlements
+    payments - expenses + paid_settlements - received_settlements
   end
 end
