@@ -21,17 +21,17 @@ class Balance
     @payments
   end
 
-  def credits
-    @credits = @project.settlements.where("payer_id = ?", @user.id).sum(:amount) if @credits.nil?
-    @credits
+  def paid_settlements
+    @paid_settlements = @project.settlements.where("payer_id = ?", @user.id).sum(:amount) if @paid_settlements.nil?
+    @paid_settlements
   end
 
-  def debits
-    @debits = @project.settlements.where("payee_id = ?", @user.id).sum(:amount) if @debits.nil?
-    @debits
+  def received_settlements
+    @received_settlements = @project.settlements.where("payee_id = ?", @user.id).sum(:amount) if @received_settlements.nil?
+    @received_settlements
   end
 
   def balance
-    @payments - @expenses + @credits - @debits
+    @payments - @expenses + @paid_settlements - @received_settlements
   end
 end
