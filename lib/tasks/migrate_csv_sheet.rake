@@ -20,6 +20,8 @@ task :migrate_csv_sheet, [:file] => :environment do |t, args|
       date:       DateTime.parse(row["Fecha"]),
       project:    project,
       category:   row["Categoría"],
+      provider:   row["Descripción"],
+      comments:   row["Comentarios"],
       amount:     row["Monto"].delete('$').delete(',').to_f,
       payer:      User.find_by_name(row["Pagado por"].strip) || raise("User not found #{row}"),
       members:    (index >= 69 && index <= 113) ? all_members : all_members_but_fabri
