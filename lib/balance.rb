@@ -17,18 +17,15 @@ class Balance
   end
 
   def payments
-    @payments = @project.expenses.where("payer_id = ?", @user.id).sum(:amount) if @payments.nil?
-    @payments
+    @payments ||= @project.expenses.where("payer_id = ?", @user.id).sum(:amount)
   end
 
   def paid_settlements
-    @paid_settlements = @project.settlements.where("payer_id = ?", @user.id).sum(:amount) if @paid_settlements.nil?
-    @paid_settlements
+    @paid_settlements ||= @project.settlements.where("payer_id = ?", @user.id).sum(:amount)
   end
 
   def received_settlements
-    @received_settlements = @project.settlements.where("payee_id = ?", @user.id).sum(:amount) if @received_settlements.nil?
-    @received_settlements
+    @received_settlements ||= @project.settlements.where("payee_id = ?", @user.id).sum(:amount)
   end
 
   def balance
