@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
 
       resources :projects, except: [:new, :edit] do
+        get 'balance', to: 'projects#balance'
         resources :expenses, except: [:new, :edit]
         resources :settlements, only: [:index, :create]
       end
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
       get 'profile', to: 'users#show'
       put 'profile', to: 'users#update'
       patch 'profile', to: 'users#update'
+      get 'balance', to: 'users#balance'
 
     end
   end
