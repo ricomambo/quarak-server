@@ -5,7 +5,6 @@ json.payer do
 end
 json.members do
   json.array!(@expense.members) do |member|
-    json.id member.id
-    json.name member.name
+    json.partial! 'user', user: member
   end
 end
