@@ -18,6 +18,13 @@ module Api
         end
       end
 
+      def destroy
+        @project = Project.find(params[:project_id])
+        @settlement = @project.settlements.find(params[:id])
+        @settlement.destroy!
+        head :no_content
+      end
+
       private
 
       def settlement_params

@@ -101,4 +101,21 @@ describe 'Settlements', type: :request do
       end
     end
   end
+
+  describe "Delete settlement" do
+      let!(:user)       { create(:user) }
+      let!(:project)    { create(:project, members: [user]) }
+      let!(:settlement) { create(:settlement, project: project) }
+      let(:headers)     { user_auth_header(user) }
+
+    it "responds with 204" do
+      delete "api/projects/#{project.id}/settlements/#{settlement.id}", {}, headers
+      expect( response.code ).to eql "204"
+    end
+
+    it "deletes the settlement" do
+      delete "api/projects/#{project.id}/settlements/#{settlement.id}", {}, headers
+      expect { settlement.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
 end
