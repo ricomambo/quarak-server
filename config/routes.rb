@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :projects, except: [:new, :edit] do
         get 'balance', to: 'projects#balance'
         resources :expenses, except: [:new, :edit]
-        resources :settlements, only: [:index, :create]
+        resources :settlements, only: [:index, :create, :destroy]
       end
 
       resources :users, only: [:index]
