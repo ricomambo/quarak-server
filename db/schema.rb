@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140903215449) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "expenses", force: true do |t|
     t.integer  "project_id"
     t.date     "date"
@@ -33,8 +30,8 @@ ActiveRecord::Schema.define(version: 20140903215449) do
     t.integer "expense_id", null: false
   end
 
-  add_index "expenses_users", ["expense_id", "user_id"], name: "index_expenses_users_on_expense_id_and_user_id", using: :btree
-  add_index "expenses_users", ["user_id", "expense_id"], name: "index_expenses_users_on_user_id_and_expense_id", using: :btree
+  add_index "expenses_users", ["expense_id", "user_id"], name: "index_expenses_users_on_expense_id_and_user_id"
+  add_index "expenses_users", ["user_id", "expense_id"], name: "index_expenses_users_on_user_id_and_expense_id"
 
   create_table "projects", force: true do |t|
     t.string   "title"
@@ -47,8 +44,8 @@ ActiveRecord::Schema.define(version: 20140903215449) do
     t.integer "project_id", null: false
   end
 
-  add_index "projects_users", ["project_id", "user_id"], name: "index_projects_users_on_project_id_and_user_id", using: :btree
-  add_index "projects_users", ["user_id", "project_id"], name: "index_projects_users_on_user_id_and_project_id", using: :btree
+  add_index "projects_users", ["project_id", "user_id"], name: "index_projects_users_on_project_id_and_user_id"
+  add_index "projects_users", ["user_id", "project_id"], name: "index_projects_users_on_user_id_and_project_id"
 
   create_table "settlements", force: true do |t|
     t.integer  "project_id"
@@ -69,6 +66,6 @@ ActiveRecord::Schema.define(version: 20140903215449) do
     t.boolean  "active",     default: true
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end
