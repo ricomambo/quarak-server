@@ -2,13 +2,14 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  email      :string(255)      default(""), not null
-#  password   :string(255)      default(""), not null
-#  name       :string(255)
-#  token      :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id              :integer          not null, primary key
+#  email           :string(255)      default(""), not null
+#  name            :string(255)
+#  token           :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  active          :boolean          default(TRUE)
+#  password_digest :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -23,21 +24,10 @@ class User < ActiveRecord::Base
 
   before_save :ensure_token
 
-  def self.authenticate(email, password)
-    user = find_by_email(email)
-    logger.debug password
-    logger.debug user.password
-    logger.debug BCrypt::Password.new(user.password)
-    if user && BCrypt::Password.new(user.password) == password
-      user.reset_token!
-      user
-    else
-      nil
-    end
-  end
+  has_secure_password
 
-  def password=(secret)
-    write_attribute(:password, BCrypt::Password.create(secret))
+  def self.authenticate(email, clear_password)
+    find_by_email(email).try(:authenticate, clear_password)
   end
 
   def ensure_token

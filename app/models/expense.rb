@@ -7,7 +7,7 @@
 #  date       :date
 #  category   :string(255)
 #  provider   :string(255)
-#  amount     :float
+#  amount     :decimal(, )
 #  payer_id   :integer
 #  comments   :text
 #  created_at :datetime
