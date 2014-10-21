@@ -1,0 +1,1 @@
+<h1 class="page-header">Projects</h1><table class="table"><thead><tr><th>Title<th>Members<th><tbody><tr ng-repeat="project in projects"><td><a ng-href="#/projects/{{project.id}}">{{project.title}}</a><td><span ng-repeat="member in project.members">{{member.name + ","}}</span><td><a href="" ng-click="remove(project)"><span class="glyphicon glyphicon-remove"></span></a></table>
