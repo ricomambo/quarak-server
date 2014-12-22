@@ -25,4 +25,12 @@ class Expense < ActiveRecord::Base
     "Expense ##{self.id}"
   end
 
+  def self.by_month
+    group_by_month(:date).sum(:amount)
+  end
+
+  def self.by_category
+    group(:category).sum(:amount)
+  end
+
 end

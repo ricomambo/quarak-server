@@ -39,8 +39,6 @@ gem 'annotate'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-
-
 group :test do
   gem 'database_cleaner'
 end
@@ -65,5 +63,5 @@ end
 
 gem 'bcrypt'
 gem 'pundit'
-
 gem 'redcarpet'
+gem 'groupdate'
