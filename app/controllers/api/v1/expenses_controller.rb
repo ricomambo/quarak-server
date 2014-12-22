@@ -35,6 +35,14 @@ module Api
         head :no_content
       end
 
+      def by_month
+        @months = @project.expenses.by_month
+      end
+
+      def by_category
+        @categories = @project.expenses.by_category
+      end
+
       private
         # Use callbacks to share common setup or constraints between actions.
         def set_expense
