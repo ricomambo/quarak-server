@@ -7,6 +7,7 @@ module Api
 
       def index
         @expenses = @project.expenses
+        @expenses = @expenses.limit(params[:limit]) if params[:limit]
       end
 
       def show
