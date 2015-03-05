@@ -16,6 +16,13 @@ class Project < ActiveRecord::Base
 
   validates :title, :members, presence: true
 
+  def get_balances
+    unless balances.count > 0
+     Balance.generate_balance([self])
+    end
+    balances
+  end
+
   def to_s
     "Project ##{self.id}"
   end
