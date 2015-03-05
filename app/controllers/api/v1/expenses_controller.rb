@@ -6,7 +6,8 @@ module Api
       before_action :set_expense, only: [:show, :update, :destroy]
 
       def index
-        @expenses = @project.expenses
+        @expenses = @project.expenses.order(date: :desc)
+        @expenses = @expenses.limit(params[:limit]) if params[:limit]
       end
 
       def show

@@ -21,6 +21,9 @@ class Expense < ActiveRecord::Base
 
   validates :project, :date, :category, :amount, :payer, :members, presence: true
 
+  after_save :reset_balances
+  after_destroy :reset_balances
+
   def to_s
     "Expense ##{self.id}"
   end
@@ -32,5 +35,11 @@ class Expense < ActiveRecord::Base
   def self.by_category
     group(:category).sum(:amount)
   end
+
+  private
+
+    def reset_balances
+      project.balances.destroy_all
+    end
 
 end
