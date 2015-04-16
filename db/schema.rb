@@ -11,25 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304221659) do
+ActiveRecord::Schema.define(version: 20140919013537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "balances", force: true do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.decimal  "expenses"
-    t.decimal  "payments"
-    t.decimal  "paid_settlements"
-    t.decimal  "received_settlements"
-    t.decimal  "balance"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "balances", ["project_id"], name: "index_balances_on_project_id", using: :btree
-  add_index "balances", ["user_id"], name: "index_balances_on_user_id", using: :btree
 
   create_table "expenses", force: true do |t|
     t.integer  "project_id"

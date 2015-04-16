@@ -37,9 +37,8 @@ class Expense < ActiveRecord::Base
   end
 
   private
-
     def reset_balances
-      project.balances.destroy_all
+      $redis.expire("project:#{project.id}:balances")
     end
 
 end

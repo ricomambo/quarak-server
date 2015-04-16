@@ -35,7 +35,8 @@ module Api
       end
 
       def balance
-        @balances = @project.get_balances.order(balance: :desc)
+        # @balances = @project.get_balances.order(balance: :desc)
+        @balances = Stats.get_balances(@project)
       end
 
       private

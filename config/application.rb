@@ -38,5 +38,8 @@ module QuarakServer
         resource '*', headers: :any, :methods => [:get, :post, :put, :delete, :options]
       end
     end
+
+    # Redis
+    config.cache_store = :redis_store, ENV["REDIS_URL"], { expires_in: 90.minutes }
   end
 end

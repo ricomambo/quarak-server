@@ -1,0 +1,1 @@
+$redis = Redis::Namespace.new("quarak", :redis => Redis.new)
