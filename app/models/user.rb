@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
   has_many :payed_expenses,    class_name: "Expense",    foreign_key: "payer_id", inverse_of: :payer
   has_many :payed_settlements, class_name: 'Settlement', foreign_key: 'payer_id', inverse_of: :payer
   has_many :received_settlements, class_name: 'Settlement', foreign_key: 'payee_id', inverse_of: :payee
-  has_many :balances
 
   validates_presence_of :email
   validates_uniqueness_of :email

@@ -39,6 +39,11 @@ gem 'annotate'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
+
 group :test do
   gem 'database_cleaner'
 end
