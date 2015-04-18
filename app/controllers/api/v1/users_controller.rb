@@ -1,6 +1,7 @@
 module Api
   module V1
     class UsersController < ApiController
+      wrap_parameters include: [:email, :password, :password_confirmation, :name, :active]
       skip_before_filter :authenticate_token!, only: [:create]
       respond_to :json
 
@@ -31,7 +32,7 @@ module Api
 
       private
         def user_params
-          params.require(:user).permit(:email, :password, :name, :active)
+          params.require(:user).permit(:email, :password, :password_confirmation, :name, :active)
         end
     end
   end
