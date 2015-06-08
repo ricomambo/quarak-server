@@ -17,4 +17,12 @@ class Settlement < ActiveRecord::Base
   belongs_to :payer, class_name: 'User', inverse_of: :payed_settlements
 
   validates_presence_of :project, :amount, :payee, :payer
+
+  after_save :reset_balances
+  after_destroy :reset_balances
+
+  private
+    def reset_balances
+      $redis.expire("project:#{project.id}:balances", 0)
+    end
 end
